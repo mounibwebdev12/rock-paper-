@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .game {
+      text-align: center;
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .rock { background: #ff4d4d; }
+    .paper { background: #4da6ff; }
+    .scissors { background: #4dff88; }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="game">
+    <h1>🪨 Rock Paper Scissors ✂️</h1>
+
+    <button class="rock" onclick="play('rock')">Rock</button>
+    <button class="paper" onclick="play('paper')">Paper</button>
+    <button class="scissors" onclick="play('scissors')">Scissors</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function play(playerChoice) {
+      const choices = ["rock", "paper", "scissors"];
+      const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+      let result = "";
+
+      if (playerChoice === computerChoice) {
+        result = "🤝 It's a tie!";
+      } else if (
+        (playerChoice === "rock" && computerChoice === "scissors") ||
+        (playerChoice === "paper" && computerChoice === "rock") ||
+        (playerChoice === "scissors" && computerChoice === "paper")
+      ) {
+        result = "🎉 You win!";
+      } else {
+        result = "💀 Computer wins!";
+      }
+
+      document.getElementById("result").innerHTML =
+        `You chose <b>${playerChoice}</b><br>
+         Computer chose <b>${computerChoice}</b><br><br>
+         ${result}`;
+    }
+  </script>
+
+</body>
+</html>
